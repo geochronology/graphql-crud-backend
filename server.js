@@ -3,7 +3,7 @@ const { ApolloServer, gql } = require('apollo-server-express')
 const cors = require('cors')
 const dotEnv = require('dotenv')
 
-const { tasks } = require('./constants')
+const { tasks, users } = require('./constants')
 
 // set env variables
 dotEnv.config()
@@ -43,6 +43,11 @@ const resolvers = {
   Query: {
     greetings: () => null,
     tasks: () => tasks
+  },
+  Task: {
+    // find the user that matches userId of task
+    // note: {userId} = parent.userId
+    user: ({ userId }) => users.find(user => user.id === userId)
   }
 }
 
