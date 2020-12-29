@@ -23,6 +23,8 @@ const typeDefs = gql`
     greetings: [String!]
     tasks: [Task!]
     task(id: ID!): Task
+    users: [User!]
+    user(id: ID!): User
   }
   
   type User {
@@ -46,12 +48,21 @@ const resolvers = {
     tasks: () => {
       return tasks
     },
-    task: (_, { id }) => tasks.find(task => task.id === id)
+    task: (_, { id }) => {
+      return tasks.find(task => task.id === id)
+    },
+    users: () => users,
+    user: (_, { id }) => {
+      return users.find(user => user.id === id)
+    }
   },
   Task: {
     // find the user that matches userId of task
     // note: {userId} = parent.userId
     user: ({ userId }) => users.find(user => user.id === userId)
+  },
+  User: {
+    tasks: ({ id }) => tasks.find(task.userId === id)
   }
 }
 
