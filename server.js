@@ -22,6 +22,7 @@ const typeDefs = gql`
   type Query {
     greetings: [String!]
     tasks: [Task!]
+    task(id: ID!): Task
   }
   
   type User {
@@ -42,7 +43,10 @@ const typeDefs = gql`
 const resolvers = {
   Query: {
     greetings: () => null,
-    tasks: () => tasks
+    tasks: () => {
+      return tasks
+    },
+    task: (_, { id }) => tasks.find(task => task.id === id)
   },
   Task: {
     // find the user that matches userId of task
