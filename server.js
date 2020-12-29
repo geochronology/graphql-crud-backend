@@ -19,6 +19,7 @@ app.use(express.json())
 const typeDefs = gql`
   type Query {
     greetings: [String!]
+    task: [Task!]
   }
   
   type User {
