@@ -59,10 +59,10 @@ const resolvers = {
   Task: {
     // find the user that matches userId of task
     // note: {userId} = parent.userId
-    user: ({ userId }) => users.find(user => user.id === userId)
+    user: ({ userId }) => users.find(users => user.id === userId)
   },
   User: {
-    tasks: ({ id }) => tasks.find(task.userId === id)
+    tasks: ({ id }) => tasks.find(task => task.userId === id)
   }
 }
 
