@@ -62,7 +62,7 @@ const resolvers = {
     user: ({ userId }) => users.find(users => user.id === userId)
   },
   User: {
-    tasks: ({ id }) => tasks.find(task => task.userId === id)
+    tasks: ({ id }) => tasks.filter(task => task.userId === id)
   }
 }
 
